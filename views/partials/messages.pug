@@ -1,0 +1,7 @@
+//- Showing the messages
+if messages 
+    .alertas 
+        each category in Object.keys(messages) 
+            each message in messages[category]
+                .alerta(class=`${category}`)
+                    p= message

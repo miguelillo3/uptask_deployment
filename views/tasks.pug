@@ -1,0 +1,51 @@
+extends layout
+
+include mixins/handleTask 
+
+block content
+    .contenido-principal
+        h1 #{pageName} - #{project.name}
+
+        if errors 
+            each error in errors 
+                .alerta.error= error.text
+        
+        +handleTask(task) 
+
+        //- pre= vardump(tasks)
+
+        // Actions to make
+        .listado-pendientes 
+            ul 
+              if(tasks.length)
+                each task in tasks 
+                    li.tarea(data-taskid=task.id data-url=project.url) 
+                        p=task.taskname
+                        .acciones 
+                            if(task.taskstatus) 
+                                i.far.fa-check-circle.completo.tooltip.top
+                                    span.tiptext Cambiar
+                            else
+                                i.far.fa-check-circle.tooltip.top
+                                    span.tiptext Cambiar
+                            a(href=`/proyectos/${project.url}/${task.id}`)
+                                i.fas.fa-pen.tooltip.top
+                                    span.tiptext Modificar
+                            i.fas.fa-trash.tooltip.top
+                                    span.tiptext Eliminar
+              else 
+                p El proyecto no tiene tareas
+
+        // Project progress
+        if(tasks.length)
+            .avance 
+                h2 Avance del Proyecto 
+                #barra-avance.barra-avance 
+                    #porcentaje.porcentaje
+
+        .contenedor-acciones 
+            a(href=`/proyecto/editar/${project.id}` class="boton") Editar Proyecto 
+            if(tasks.length)
+                button#eliminar-proyecto(type="buton" class="boton eliminar" data-project-url=project.url disabled) Eliminar Proyecto
+            else
+                button#eliminar-proyecto(type="buton" class="boton eliminar" data-project-url=project.url) Eliminar Proyecto

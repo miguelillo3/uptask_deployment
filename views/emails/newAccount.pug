@@ -1,0 +1,17 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        style
+            include ./email.css
+        
+    body 
+        h2 Creación de Nueva Cuenta UpTask
+        p Hola, has solicitado crear una nueva cuenta. Por favor, haz click en el siguiente enlace para activarla. <b>Nota:</b> <i>Este enlace es temporal, de manera que si expira debes volver a solicitarlo.</i>
+        a(href=`${confirmUrl}`) Activar Nueva Cuenta
+
+        p Si no puedes acceder a este enlace, pega en tu navegador la siguiente dirección web: #{confirmUrl}
+
+        p Si no hiciste esta solicitud, no tienes que hacer nada más, simplemente puedes ignorarla.

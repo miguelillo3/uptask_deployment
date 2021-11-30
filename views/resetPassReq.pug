@@ -1,0 +1,20 @@
+doctype html
+html(lang="es")
+    head 
+        include partials/header
+    body.login 
+        .contenedor-formulario 
+            h1= pageName
+            p Suministra tu email para restablecer la contraseña
+
+            include partials/messages
+
+            form#formulario.caja.caja-login(action="/restablecer", method="POST") 
+                .campo 
+                    label(for="email") Email 
+                    input(type="email", name="email", placeholder="Tu email", value= email)
+                .campo.enviar
+                    input.boton(type="submit", value="Restablecer Contraseña")
+                .campo.acciones 
+                    a(href="/iniciar-sesion") !Ya la recordé! Ir a Iniciar Sesión
+

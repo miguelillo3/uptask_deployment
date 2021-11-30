@@ -1,0 +1,10 @@
+mixin handleTask(task={})
+
+    form.agregar-tarea(action=`/proyectos/${project.url}/${task.id || ''}` method="POST")
+        .campo 
+            label(for="task") Tarea: 
+            input.nombre-tarea(type="text" name="taskname" placeholder="Nombre Tarea" value=task.taskname)
+            input(type="hidden" name="url" value=project.url)
+            input(type="hidden" name="id" value=task.id)
+        .campo.enviar 
+            input(type="submit" value=`${task.taskname ? 'Guardar Cambios' : 'Agregar'}` class="boton nueva-tarea")

@@ -1,0 +1,22 @@
+doctype html
+html(lang="es")
+    head 
+        include partials/header
+    body.login 
+        .contenedor-formulario 
+            h1= pageName
+
+            include partials/messages 
+
+            form#formulario.caja.caja-login(action="/crear-cuenta", method="POST") 
+                .campo 
+                    label(for="email") Email 
+                    input(type="email", name="email", placeholder="Tu email", value= email)
+                .campo 
+                    label(for="password") Contraseña 
+                    input(type="password", name="password", placeholder="Tu contraseña", value= password)
+                .campo.enviar
+                    input.boton(type="submit", value="Crear Cuenta")
+                .campo 
+                    a(href="/iniciar-sesion") Volver a Iniciar Sesión
+

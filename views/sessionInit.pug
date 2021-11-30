@@ -1,0 +1,28 @@
+doctype html
+html(lang="es")
+    head 
+        include partials/header
+    body.login 
+        .contenedor-formulario 
+            h1= pageName
+
+            if messages 
+                .alertas 
+                    each category in Object.keys(messages) 
+                        each message in messages[category]
+                            .alerta(class=`${category}`)
+                                p= message 
+
+            form#formulario.caja.caja-login(action="/iniciar-sesion", method="POST") 
+                .campo 
+                    label(for="email") Email 
+                    input(type="email", name="email", placeholder="Tu email", value= email)
+                .campo 
+                    label(for="password") Contraseña 
+                    input(type="password", name="password", placeholder="Tu contraseña", value= password)
+                .campo.enviar
+                    input.boton(type="submit", value="Iniciar Sesión")
+                .campo.acciones 
+                    a(href="/crear-cuenta") ¿Aún no tienes una cuenta? Crea una Gratis!
+                    a(href="/restablecer") ¿Olvidaste tu contraseña?
+
