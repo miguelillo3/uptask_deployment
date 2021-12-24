@@ -45,8 +45,12 @@ exports.createNewAccount = async (req, res) => {
         // and redirect
         res.redirect('/iniciar-sesion');
     } catch (error) {
-        // console.log(error);
-        req.flash('error', error.errors.map(error => error.message));
+        // console.log('Este es el error --> ', error, ' -- Response: ', response);
+        if(Array.isArray(error.errors)) {
+            req.flash('error', error.errors.map(error => error.message));
+        } else {
+            req.flash(error.message || error.response);
+        }
         res.render('newAccount', {
             messages: req.flash(),
             email,
