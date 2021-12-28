@@ -126,13 +126,20 @@ exports.updateProject = async (req, res) => {
 
 exports.deleteProject = async (req, res, next) => {
     // req conains query and params, and is the same data
-    const { urlProject } = req.params;
-    const result = await Projects.destroy(
-        { where: { url: urlProject } }
-    );
-    if (!result) {
+    const { url } = req.params;
+    // console.log('req.params: ', req.params, 'req.query: ', req.query)
+    try {
+        const result = await Projects.destroy(
+            { where: { url: url } }
+        );
+        res.status(200).send('El proyecto fue eliminado satisfactoriamente');
+        
+    } catch (error) {
+        console.log(error)
         return next();
+        
     }
-    res.status(200).send('El proyecto fue eliminado satisfactoriamente');
+    // if (!result) {
+    // }
 };
 
